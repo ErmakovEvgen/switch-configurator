@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Switch Configurator</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', path='css/style.css') }}"
+    >
+</head>
+
+<body>
+
+<div class="container">
+
+    <header class="header">
+        <div>
+            <h1>Switch Configurator</h1>
+            <p>Генератор конфигурации Cisco / D-Link</p>
+        </div>
+
+        <div id="scenario" class="scenario hidden">
+            Сценарий: —
+        </div>
+    </header>
+
+
+    <main>
+
+        <section class="card">
+
+            <h2>Данные клиента</h2>
+
+            <form id="config-form">
+
+                <div class="form-grid">
+
+                    <div class="field field-wide">
+                        <label for="fio">
+                            ФИО клиента
+                        </label>
+
+                        <input
+                            id="fio"
+                            name="fio"
+                            type="text"
+                            placeholder="Иванов Иван Иванович"
+                            required
+                        >
+
+                        <span class="error" id="fio-error"></span>
+                    </div>
+
+
+                    <div class="field">
+                        <label for="apartment">
+                            Номер квартиры
+                        </label>
+
+                        <input
+                            id="apartment"
+                            name="apartment"
+                            type="number"
+                            min="1"
+                            placeholder="41"
+                            required
+                        >
+
+                        <span class="error" id="apartment-error"></span>
+                    </div>
+
+
+                    <div class="field">
+                        <label for="port">
+                            Порт
+                        </label>
+
+                        <input
+                            id="port"
+                            name="port"
+                            type="number"
+                            min="1"
+                            placeholder="5"
+                            required
+                        >
+
+                        <span class="error" id="port-error"></span>
+                    </div>
+
+
+                    <div class="field">
+                        <label for="vlan">
+                            VLAN
+                        </label>
+
+                        <input
+                            id="vlan"
+                            name="vlan"
+                            type="number"
+                            min="1"
+                            placeholder="3114"
+                        >
+
+                        <span
+                            class="field-hint"
+                            id="vlan-hint"
+                        >
+                            Для кольца VLAN рассчитывается автоматически
+                        </span>
+                    </div>
+
+
+                    <div class="field">
+                        <label for="ip">
+                            IP-адрес
+                        </label>
+
+                        <input
+                            id="ip"
+                            name="ip"
+                            type="text"
+                            placeholder="10.10.10.10"
+                        >
+
+                        <span class="field-hint">
+                            Заполняется только для IP-клиента
+                        </span>
+                    </div>
+
+
+                    <div class="field">
+                        <label for="ring-switch">
+                            Коммутатор в кольце
+                        </label>
+
+                        <input
+                            id="ring-switch"
+                            name="ring-switch"
+                            type="number"
+                            min="1"
+                            placeholder="2"
+                        >
+
+                        <span class="field-hint">
+                            Заполняется только для клиента в кольце
+                        </span>
+                    </div>
+
+
+                    <div class="field checkbox-field">
+
+                        <label class="checkbox-label">
+
+                            <input
+                                id="iptv"
+                                name="iptv"
+                                type="checkbox"
+                            >
+
+                            <span>IP-TV</span>
+
+                        </label>
+
+                    </div>
+
+                </div>
+
+
+                <div class="actions">
+
+                    <button
+                        type="submit"
+                        class="button button-primary"
+                        id="generate-button"
+                    >
+                        Сформировать конфигурацию
+                    </button>
+
+                    <button
+                        type="button"
+                        class="button button-secondary"
+                        id="clear-button"
+                    >
+                        Очистить
+                    </button>
+
+                </div>
+
+            </form>
+
+            <div
+                id="form-error"
+                class="form-error hidden"
+            ></div>
+
+        </section>
+
+
+        <section
+            id="result"
+            class="result hidden"
+        >
+
+            <div class="result-header">
+
+                <h2>Конфигурация</h2>
+
+                <button
+                    type="button"
+                    class="button button-secondary"
+                    id="copy-all-button"
+                >
+                    Скопировать всё
+                </button>
+
+            </div>
+
+
+            <div class="config-grid">
+
+                <div class="config-card">
+
+                    <div class="config-header">
+
+                        <h3>Cisco</h3>
+
+                        <button
+                            type="button"
+                            class="copy-button"
+                            data-target="cisco-config"
+                        >
+                            Копировать
+                        </button>
+
+                    </div>
+
+                    <pre
+                        id="cisco-config"
+                        class="config"
+                    ></pre>
+
+                </div>
+
+
+                <div class="config-card">
+
+                    <div class="config-header">
+
+                        <h3>D-Link</h3>
+
+                        <button
+                            type="button"
+                            class="copy-button"
+                            data-target="dlink-config"
+                        >
+                            Копировать
+                        </button>
+
+                    </div>
+
+                    <pre
+                        id="dlink-config"
+                        class="config"
+                    ></pre>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script
+    src="{{ url_for('static', path='js/app.js') }}"
+></script>
+
+</body>
+</html>
