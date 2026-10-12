@@ -67,11 +67,7 @@ class CiscoGenerator:
         ])
 
         return "\n".join(commands)
-
-    # =====================================================
-    # Строки 4-22
-    # =====================================================
-
+        
     def _common_commands(
         self,
         config: ClientConfig,
@@ -93,8 +89,6 @@ class CiscoGenerator:
             "storm-control multicast level pps 128 128",
             "ip dhcp snooping limit rate 5",
 
-            # Excel F18 — это не формула,
-            # строка присутствует непосредственно в таблице.
             "storm-control action shutdown",
 
             "no cdp enable",
@@ -102,11 +96,7 @@ class CiscoGenerator:
             "spanning-tree guard root",
             "spanning-tree portfast",
         ]
-
-    # =====================================================
-    # Строка 23
-    # =====================================================
-
+        
     def _description(
         self,
         config: ClientConfig,
@@ -119,9 +109,6 @@ class CiscoGenerator:
             f"{description}_kv{config.apartment}"
         )
 
-    # =====================================================
-    # Строка 24
-    # =====================================================
 
     def _access_vlan(
         self,
@@ -138,10 +125,6 @@ class CiscoGenerator:
             f"switchport access vlan {vlan}"
         )
 
-    # =====================================================
-    # Строка 25
-    # =====================================================
-
     def _ip_access_group(
         self,
         config: ClientConfig,
@@ -152,21 +135,13 @@ class CiscoGenerator:
         return (
             f"ip access-group {acl} in"
         )
-
-    # =====================================================
-    # Строки 26-27
-    # =====================================================
-
+        
     def _iptv_commands(self) -> list[str]:
 
         return [
             "mvr type receiver",
             "mvr immediate",
         ]
-
-    # =====================================================
-    # Строки 29-32
-    # =====================================================
 
     def _ip_acl(
         self,
