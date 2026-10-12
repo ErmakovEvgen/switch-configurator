@@ -33,13 +33,7 @@ const copyAllButton =
     document.getElementById("copy-all-button");
 
 
-/*
- * Определяем сценарий на frontend.
- *
- * Это только визуальная подсказка.
- * Настоящее определение сценария
- * всё равно выполняется backend.
- */
+
 function updateScenario() {
 
     const hasIp =
@@ -84,29 +78,17 @@ function updateScenario() {
 }
 
 
-/*
- * Когда вводится IP —
- * отключаем кольцо.
- */
 ipInput.addEventListener(
     "input",
     updateScenario
 );
 
-
-/*
- * Когда вводится коммутатор кольца —
- * отключаем IP.
- */
 ringSwitchInput.addEventListener(
     "input",
     updateScenario
 );
 
 
-/*
- * Генерация конфигурации.
- */
 form.addEventListener(
     "submit",
     async function (event) {
@@ -198,9 +180,7 @@ form.addEventListener(
 );
 
 
-/*
- * Показываем результат.
- */
+
 function showResult(result) {
 
     ciscoConfig.textContent =
@@ -218,9 +198,6 @@ function showResult(result) {
 }
 
 
-/*
- * Очистка формы.
- */
 clearButton.addEventListener(
     "click",
     function () {
@@ -238,10 +215,6 @@ clearButton.addEventListener(
     }
 );
 
-
-/*
- * Копирование конкретного конфига.
- */
 document
     .querySelectorAll(".copy-button")
     .forEach(function (button) {
@@ -277,9 +250,7 @@ document
     });
 
 
-/*
- * Копирование обоих конфигов.
- */
+
 copyAllButton.addEventListener(
     "click",
     async function () {
@@ -310,18 +281,11 @@ copyAllButton.addEventListener(
 );
 
 
-/*
- * Clipboard.
- */
 async function copyText(text) {
 
     await navigator.clipboard.writeText(text);
 }
 
-
-/*
- * Ошибка.
- */
 function showError(message) {
 
     formError.textContent = message;
