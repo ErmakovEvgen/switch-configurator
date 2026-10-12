@@ -1,5 +1,3 @@
-# Точная транслитерация по таблице P:Q из листа "Физики" Excel-конфигуратора.
-
 TRANSLIT = {
     "а": "a",
     "б": "b",
@@ -71,7 +69,6 @@ TRANSLIT = {
 def transliterate(text: str) -> str:
     result = text
 
-    # Excel выполняет SUBSTITUTE последовательно.
     for source, target in TRANSLIT.items():
         result = result.replace(source, target)
 
